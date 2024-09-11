@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Desenvolvimento de Sistemas Web III</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <aside>
+        <nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link " href="/."> 
+                     <i  class="oi oi-home"></i> <span>Home</span>
+              </a></li>
+            </ul>
+          
+            <ul class="nav nav-pills">
+              <li class="nav-item"><span class="nav-link active" >Livros</span></li>
+              <li class="nav-item">
+                <a class="nav-link" href="/livro/cadastrar">
+                  <i class="oi oi-plus"></i> <span>Cadastrar</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/livro/listar">
+                  <i class="oi oi-spreadsheet"></i><span>Listar </span>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-pills">
+                    <li class="nav-item"><span class="nav-link active">Autores</span></li>
+                    <li class="nav-item"><a class="nav-link" 
+                        href="/autor/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
+                    </a></li>
+                    <li class="nav-item"><a class="nav-link" 
+                        href="/autor/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar </span>
+                    </a></li>
+            </ul>
+
+          </nav>
+    </aside>
+</body>
+</html>
