@@ -17,7 +17,7 @@ import br.edu.ifsp.dsw3.livraria.model.domain.Livro;
 public class LivroController {
 
     @Autowired
-    LivroDAO ddao;
+    LivroDAO ldao;
 
     @GetMapping("/cadastrar")
     public String cadastrar(Livro livro){
@@ -26,35 +26,36 @@ public class LivroController {
 
     @GetMapping("/listar")
     public String listar(ModelMap map){
-        map.addAttribute("livros",ddao.findAll());
+        map.addAttribute("livros",ldao.findAll());
         return ("livro/lista");
     }
 
     @PostMapping("/salvar")
     public String salvar(Livro livro){
-        ddao.save(livro);
+        
+        ldao.save(livro);
         return ("redirect:/livro/cadastrar");
     }
 
     @GetMapping("/editar/{id}")
     public String editar(ModelMap map, @PathVariable("id")Long id){
-        map.addAttribute("livro",ddao.getReferenceById(id));
+        map.addAttribute("livro",ldao.getReferenceById(id));
         return ("livro/cadastro");
     }
 
     @PostMapping("/editar")
     public String alterar (Livro livro, RedirectAttributes attr){
-        ddao.save(livro);
+        ldao.save(livro);
         attr.addFlashAttribute("success", "livro editado com sucesso!");
-        return ("redirect:/livro/lista");
+        return ("redirect:/livro/listar");
     }
 
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, ModelMap map){
-        Livro livro = ddao.findById(id).orElse(null);
+        Livro livro = ldao.findById(id).orElse(null);
         if (livro != null) {
             if (livro.getAutores().isEmpty()) {
-                ddao.deleteById(id);
+                ldao.deleteById(id);
                 map.addAttribute("success", "Livro excluído com sucesso!");
             } else {
                 map.addAttribute("fail", "Livro não removido. Possui Autores!");

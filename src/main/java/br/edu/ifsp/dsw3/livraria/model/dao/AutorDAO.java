@@ -9,12 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 import br.edu.ifsp.dsw3.livraria.model.domain.Autor;
 
 public interface AutorDAO extends JpaRepository <Autor, Long>{
-    @Query("select f from Autor f where f.nome like %?1%")
+    @Query("SELECT a FROM Autor a WHERE a.nome LIKE %?1%")
     public List<Autor> findLikeNome (String nome);
 
-    @Query("select f from Autor f where f.livro.id = ?1")
+    @Query("SELECT a FROM Autor a JOIN a.livros l WHERE l.id = ?1")
     public List<Autor> findByLivro(Long id);
 
-    @Query("select f from Autor f where f.dataNascimento >= ?1 and f.dataNascimento <= ?2")
+    @Query("SELECT a FROM Autor a WHERE a.dataNascimento >= ?1 AND a.dataNascimento <= ?2")
     public List<Autor> findByDate(LocalDate inicio, LocalDate fim);
 }

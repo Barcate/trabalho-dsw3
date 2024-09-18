@@ -17,7 +17,7 @@
                         <span>Lista de Livros</span>
                     </li>
                 </ul>
-                <a class="btn btn-primary btn-md" href="/livros/cadastrar" role="button">
+                <a class="btn btn-primary btn-md" href="/livro/cadastrar" role="button">
                     <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
                     <span>Novo Livro</span>
                 </a>
@@ -32,7 +32,7 @@
                     <tr>
                         <th>#</th>
                         <th>Título</th>
-                        <th>Autor</th>
+                        <th>Autor(es)</th>
                         <th>Ano de Publicação</th>
                         <th>Ações</th>
                     </tr>
@@ -41,13 +41,19 @@
                     <tr th:each="livro : ${livros}">
                         <td th:text="${livro.id}">1</td>
                         <td th:text="${livro.nome}">Título do Livro</td>
-                        <td th:text="${livro.autor}">Autor do Livro</td>
+                        <td>
+                            <!-- Iterate over the list of authors -->
+                            <span th:each="autor, iterStat : ${livro.autores}" th:text="${autor.nome}">
+                                <!-- Include a comma between authors, except after the last author -->
+                                <span th:if="${!iterStat.last}">, </span>
+                            </span>
+                        </td>
                         <td th:text="${livro.anoPublicacao}">2023</td>
                         <td>
-                            <a class="btn btn-info btn-sm" th:href="@{/livros/editar/{id} (id=${livro.id})}" role="button">
+                            <a class="btn btn-info btn-sm" th:href="@{/livro/editar/{id} (id=${livro.id})}" role="button">
                                 <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                             </a>
-                            <button th:id="${'btn_livros/excluir/'+livro.id}" type="button"
+                            <button th:id="${'btn_livro/excluir/'+livro.id}" type="button"
                                     class="btn btn-danger btn-sm"
                                     data-toggle="modal" data-target="#myModal">
                                 <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>

@@ -26,19 +26,31 @@ layout:decorate="~{layout}">
         </nav>
 
         <div class="container" id="cadastro">
-            <!--form action="departamento" method="POST"-->
             <form th:action="${livro.id==null}? @{/livro/salvar}:@{/livro/editar}" th:object="${livro}" method="POST">
                 <div class="form-row">
+                    <!-- Campo para o nome do livro -->
                     <div class="form-group col-md-6">
                         <label for="nome">Livro</label>
                         <input type="text" class="form-control" id="nome"
-                               placeholder="Nome Livro" autofocus="autofocus" th:field="*{nome}"/>
+                               placeholder="Nome do Livro" autofocus="autofocus" th:field="*{nome}" autocomplete="off"/>
                     </div>
                 </div>
+                
+                <!-- Campo para o ano de publicação -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="anoPublicacao">Ano de Publicação</label>
+                        <input type="number" class="form-control" id="anoPublicacao"
+                               placeholder="Ano de Publicação" th:field="*{anoPublicacao}" autocomplete="off"/>
+                    </div>
+                </div>
+                
+                <!-- Campo oculto para o ID -->
                 <input type="hidden" id="id" th:field="*{id}"/>
+                
+                <!-- Botão de submissão -->
                 <button type="submit" class="btn btn-primary btn-sm" name="op" value="Salvar">Salvar</button>
             </form>
-
         </div>
     </section>
 </body>

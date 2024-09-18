@@ -2,6 +2,7 @@ package br.edu.ifsp.dsw3.livraria.model.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,11 +10,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "autores")
+@Table(name = "autor")
 public class Autor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,21 +31,24 @@ public class Autor implements Serializable {
     private LocalDate dataNascimento;
 
     @Column(name = "quantidade_livros_publicados", nullable = false)
-    private int quantidadeLivrosPublicados; // Substituindo "salario" por "quantidade de livros publicados"
+    private int quantidadeLivrosPublicados;
 
-    @ManyToOne
-    @JoinColumn(name = "livro_id_fk")
-    private Livro livro;
+    @ManyToMany
+    @JoinTable(
+        name="livrosOwn",
+        joinColumns = @JoinColumn(name = "autor_id"),
+        inverseJoinColumns = @JoinColumn(name = "livro_id")
+    )
+    private List<Livro> livros;
 
     public Autor() {
     }
 
-    public Autor(String nome, String cpf, LocalDate dataNascimento, int quantidadeLivrosPublicados, Livro livro) {
+    public Autor(String nome, String cpf, LocalDate dataNascimento, int quantidadeLivrosPublicados) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.quantidadeLivrosPublicados = quantidadeLivrosPublicados;
-        this.livro = livro;
     }
 
     public Long getId() {
@@ -86,11 +91,15 @@ public class Autor implements Serializable {
         this.quantidadeLivrosPublicados = quantidadeLivrosPublicados;
     }
 
-    public Livro getLivro() {
-        return livro;
+    public List<Livro> getLivros() {
+        return livros;
     }
 
-    public void setLivro(Livro livro) {
-        this.livro = livro;
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
+
+    public void addLivro(Livro livro) {
+        this.livros.add(livro);
     }
 }
