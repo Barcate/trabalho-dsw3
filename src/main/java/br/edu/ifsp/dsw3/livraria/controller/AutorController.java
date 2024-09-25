@@ -81,4 +81,19 @@ public class AutorController {
         map.addAttribute("autor",adao.findByDate(inicio,fim));
         return "/autor/lista";
     }
+    
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, ModelMap map) {
+        Autor autor = adao.findById(id).orElse(null);
+        
+        if (autor != null) {
+            // Exclui o autor independentemente de ele ter livros associados ou não
+            adao.deleteById(id);
+            map.addAttribute("success", "Autor excluído com sucesso!");
+        } else {
+            map.addAttribute("fail", "Autor não encontrado!");
+        }
+        
+        return listar(map); // Redireciona para a lista de autores
+    }
 }
