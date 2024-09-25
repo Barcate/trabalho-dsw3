@@ -1,45 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <title>Desenvolvimento de Sistemas Web III</title>
+    <title>Biribinha Livraria</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e9ecef; /* Cor de fundo suave */
+            font-family: 'Arial', sans-serif; /* Fonte limpa e moderna */
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        aside {
+            width: 250px; /* Largura fixa para a barra lateral */
+            background-color: #343a40; /* Cor de fundo da sidebar */
+            color: #fff; /* Cor do texto */
+            height: 100vh; /* Altura total da tela */
+            padding-top: 20px; /* Espaçamento superior */
+            position: sticky; /* Fixa a sidebar ao rolar */
+        }
+
+        .nav-link {
+            color: #ffffff; /* Cor dos links */
+            padding: 10px 15px; /* Espaçamento dos links */
+            border-radius: 5px; /* Bordas arredondadas */
+            transition: background-color 0.3s; /* Transição suave para o fundo */
+        }
+
+        .nav-link:hover {
+            background-color: #495057; /* Cor de fundo ao passar o mouse */
+        }
+
+        .nav-link.active {
+            background-color: #007bff; /* Cor do link ativo */
+        }
+
+        .sidebar .nav-item {
+            margin-bottom: 10px; /* Espaçamento entre os itens da nav */
+        }
+
+        .content {
+            flex-grow: 1; /* Expande a área de conteúdo */
+            padding: 20px; /* Espaçamento interno */
+        }
+
+        .header {
+            background-color: #007bff; /* Cor do cabeçalho */
+            color: white; /* Cor do texto do cabeçalho */
+            padding: 15px; /* Espaçamento interno */
+            border-radius: 8px; /* Bordas arredondadas */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            margin-bottom: 20px; /* Espaçamento inferior */
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+          color: #fff;
+          background-color: #dc6a6a !important;
+        }
+    </style>
 </head>
 <body>
-    <aside>
+  <aside>
         <nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
-            <ul class="nav nav-pills">
-              <li class="nav-item">
-                <a class="nav-link " href="/."> 
-                     <i  class="oi oi-home"></i> <span>Home</span>
-              </a></li>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/.">
+                        <i class="oi oi-home"></i> <span>Home</span>
+                    </a>
+                </li>
             </ul>
           
-            <ul class="nav nav-pills">
-              <li class="nav-item"><span class="nav-link active" >Livros</span></li>
-              <li class="nav-item">
-                <a class="nav-link" href="/livro/cadastrar">
-                  <i class="oi oi-plus"></i> <span>Cadastrar</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/livro/listar">
-                  <i class="oi oi-spreadsheet"></i><span>Listar </span>
-                </a>
-              </li>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item"><span class="nav-link active">Livros</span></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/livro/cadastrar">
+                        <i class="oi oi-plus"></i> <span>Cadastrar</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/livro/listar">
+                        <i class="oi oi-spreadsheet"></i><span>Listar</span>
+                    </a>
+                </li>
             </ul>
-            <ul class="nav nav-pills">
-                    <li class="nav-item"><span class="nav-link active">Autores</span></li>
-                    <li class="nav-item"><a class="nav-link" 
-                        href="/autor/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" 
-                        href="/autor/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar </span>
-                    </a></li>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item"><span class="nav-link active">Autores</span></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/autor/cadastrar">
+                        <i class="oi oi-plus"></i> <span>Cadastrar</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/autor/listar">
+                        <i class="oi oi-spreadsheet"></i> <span>Listar</span>
+                    </a>
+                </li>
             </ul>
-
-          </nav>
+        </nav>
     </aside>
+
+    <div class="content">
+      <div class="header">
+          <h1>Bem-vindo à Biribinha Livraria</h1>
+          <p>A melhor seleção de livros para você!</p>
+      </div>
+      <!-- Aqui você pode adicionar mais conteúdo -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,97 +1,168 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <title>Desenvolvimento de Sistemas Web III</title>
+    <title>Biribinha Livraria</title>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/image/favicon.jpg" />
+    
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Open Iconic Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .layout-main {
+            display: flex;
+            margin-top: 60px; /* Espaco para o header fixo */
+        }
+
+        aside {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            height: calc(100vh - 60px); /* Altura total menos o header */
+            padding: 15px 0;
+        }
+
+        .sidebar .nav-link {
+            color: #ffffff;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #495057;
+            color: #ffffff;
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #007bff;
+        }
+
+        .layout-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-copy {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-dark bg-dark fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="btn btn-dark navbar-toggle pull-left">
                 <i class="oi oi-menu"></i>
               </button>
-              <a class="navbar-brand " href="#">Desenvolvimento de Sistemas Web III</a>
+              <a class="navbar-brand" href="#">Biribinha Livraria</a>
             </div>
           </div>
         </nav>
     </header>
 
-<div class="layout-main">
-
-    <aside>
-        <nav class="sidebar sidebar-open">
-            <ul class="nav nav-pills">
-              <li class="nav-item">
-                <a class="nav-link " href="./"> 
-                     <i  class="oi oi-home"></i> <span>Home</span>
-              </a></li>
-            </ul>
-          
-            <ul class="nav nav-pills">
-              <li class="nav-item"><span class="nav-link active" >Livros</span></li>
-              <li class="nav-item">
-                <a class="nav-link" href="/livro/cadastrar">
-                  <i class="oi oi-plus"></i> <span>Cadastrar</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/livro/listar">
-                  <i class="oi oi-spreadsheet"></i><span>Listar </span>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-pills">
-                    <li class="nav-item"><span class="nav-link active">Autores</span></li>
-                    <li class="nav-item"><a class="nav-link" 
-                        href="/autor/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" 
-                        href="/autor/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar </span>
-                    </a></li>
-            </ul>
-
-          </nav>
-    </aside>
-
-    <section class="layout-content">
-
-        <nav class="navbar navbar-expand-md bg-light">
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <i class="oi oi-caret-right"></i>
-                        <span>Home</span>
+    <div class="layout-main">
+        <aside>
+            <nav class="sidebar sidebar-open">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./">
+                             <i class="oi oi-home"></i> <span>Home</span>
+                        </a>
                     </li>
                 </ul>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item"><span class="nav-link active">Livros</span></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/livro/cadastrar">
+                            <i class="oi oi-plus"></i> <span>Cadastrar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/livro/listar">
+                            <i class="oi oi-spreadsheet"></i><span>Listar</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item"><span class="nav-link active">Autores</span></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/autor/cadastrar">
+                            <i class="oi oi-plus"></i> <span>Cadastrar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/autor/listar">
+                            <i class="oi oi-spreadsheet"></i> <span>Listar</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <section class="layout-content">
+            <nav class="navbar navbar-expand-md bg-light">
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <i class="oi oi-caret-right"></i>
+                            <span>Home</span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+    
+            <div class="container">
+                <p>
+                    O Java Spring Boot é uma ferramenta de código aberto que facilita o uso de estruturas baseadas em Java para criar microsserviços e aplicativos da web. Para qualquer definição de Spring Boot, a conversa deve começar com Java – uma das linguagens de desenvolvimento e plataformas de computação mais populares e amplamente utilizadas para desenvolvimento de aplicativos. Desenvolvedores de todo o mundo iniciam sua jornada de codificação aprendendo Java. Flexível e fácil de usar, o Java é o favorito do desenvolvedor para uma variedade de aplicativos - tudo, desde aplicativos de mídia social, web e jogos até aplicativos empresariais e de rede.
+                </p>
+                <p>
+                    Embora o Java possa ser fácil de usar e ser mais fácil de aprender do que outras linguagens, o nível de complexidade para criar, depurar e implantar aplicativos Java foi escalonado para novas alturas. Isso ocorre devido ao número exponencial de variáveis que os desenvolvedores modernos enfrentam ao desenvolver aplicativos Web ou aplicativos móveis para tecnologias modernas comuns, como streaming de música ou aplicativos de pagamento em dinheiro móvel. Um desenvolvedor que escreve um aplicativo de linha de negócios básico agora precisa lidar com várias bibliotecas, plug-ins, log de erros e manipulação de bibliotecas, integrações com serviços Web e várias linguagens, como C#, Java, HTML e outras. É compreensível que haja uma demanda insaciável por qualquer ferramenta que simplifique o desenvolvimento de aplicativos Java, economizando tempo e dinheiro aos desenvolvedores.
+                </p>
             </div>
-        </nav>
-    
+        </section>
+    </div>
+
+    <footer>
         <div class="container">
-
-            <p>
-                O Java Spring Boot é uma ferramenta de código aberto que facilita o uso de estruturas baseadas em Java para criar microsserviços e aplicativos da web. Para qualquer definição de Spring Boot, a conversa deve começar com Java – uma das linguagens de desenvolvimento e plataformas de computação mais populares e amplamente utilizadas para desenvolvimento de aplicativos. Desenvolvedores de todo o mundo iniciam sua jornada de codificação aprendendo Java. Flexível e fácil de usar, o Java é o favorito do desenvolvedor para uma variedade de aplicativos - tudo, desde aplicativos de mídia social, web e jogos até aplicativos empresariais e de rede.
-            </p>
-            <p>
-                Embora o Java possa ser fácil de usar e ser mais fácil de aprender do que outras linguagens, o nível de complexidade para criar, depurar e implantar aplicativos Java foi escalonado para novas alturas. Isso ocorre devido ao número exponencial de variáveis que os desenvolvedores modernos enfrentam ao desenvolver aplicativos Web ou aplicativos móveis para tecnologias modernas comuns, como streaming de música ou aplicativos de pagamento em dinheiro móvel. Um desenvolvedor que escreve um aplicativo de linha de negócios básico agora precisa lidar com várias bibliotecas, plug-ins, log de erros e manipulação de bibliotecas, integrações com serviços Web e várias linguagens, como C#, Java, HTML e outras. É compreensível que haja uma demanda insaciável por qualquer ferramenta que simplifique o desenvolvimento de aplicativos Java, economizando tempo e dinheiro aos desenvolvedores.
- 
-            </p>
-    
+            <span class="footer-copy">&copy; 2024 Biribinha Livraria</span>
         </div>
-    
-    </section>
-
-</div>
-<div>
-    <footer class="layout-footer" >
-        <div class="container">
-          <span class="footer-copy">&copy; 2024 Aula de Desenvolvimento de Sistemas Web III</span>
-        </div>
-      </footer>
-</div>
-
+    </footer>
 </body>
 </html>

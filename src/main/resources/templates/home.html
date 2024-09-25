@@ -1,38 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout}">
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Livraria Foda d+</title>
     <meta charset="UTF-8" />
+    <!-- Adicionando o CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Cor de fundo suave */
+            color: #333; /* Cor do texto */
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff; /* Cor de fundo do container */
+            padding: 20px; /* Espaçamento interno */
+            border-radius: 8px; /* Bordas arredondadas */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        p {
+            line-height: 1.6; /* Aumento do espaçamento entre linhas */
+            margin-bottom: 15px; /* Espaçamento inferior para parágrafos */
+        }
+
+        .book-card {
+            margin-bottom: 20px; /* Espaçamento entre os cartões de livros */
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            color: #fff;
+            background-color: #dc6a6a !important;
+        }
+
+        .card img {
+            height: 200px; /* Altura fixa para a imagem do livro */
+            object-fit: cover; /* Faz com que a imagem preencha o espaço sem distorcer */
+        }
+    </style>
 </head>
 <body>
     <section class="layout-content" layout:fragment="corpo">
-
-        <nav class="navbar navbar-expand-md bg-light">
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a class="navbar-brand" href="#">Livraria Foda d+</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <i class="oi oi-caret-right"></i>
-                        <span>Livros</span>
+                        <a class="nav-link" href="/livro/listar"><i class="oi oi-caret-right"></i> Livros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/livro/cadastrar"><i class="oi oi-plus"></i> Novo Livro</a>
                     </li>
                 </ul>
             </div>
         </nav>
     
         <div class="container">
-
-            <p>
-                O Java Spring Boot é uma ferramenta de código aberto que facilita o uso de estruturas baseadas em Java para criar microsserviços e aplicativos da web. Para qualquer definição de Spring Boot, a conversa deve começar com Java – uma das linguagens de desenvolvimento e plataformas de computação mais populares e amplamente utilizadas para desenvolvimento de aplicativos. Desenvolvedores de todo o mundo iniciam sua jornada de codificação aprendendo Java. Flexível e fácil de usar, o Java é o favorito do desenvolvedor para uma variedade de aplicativos - tudo, desde aplicativos de mídia social, web e jogos até aplicativos empresariais e de rede.
-            </p>
-            <p>
-                Embora o Java possa ser fácil de usar e ser mais fácil de aprender do que outras linguagens, o nível de complexidade para criar, depurar e implantar aplicativos Java foi escalonado para novas alturas. Isso ocorre devido ao número exponencial de variáveis que os desenvolvedores modernos enfrentam ao desenvolver aplicativos Web ou aplicativos móveis para tecnologias modernas comuns, como streaming de música ou aplicativos de pagamento em dinheiro móvel. Um desenvolvedor que escreve um aplicativo de linha de negócios básico agora precisa lidar com várias bibliotecas, plug-ins, log de erros e manipulação de bibliotecas, integrações com serviços Web e várias linguagens, como C#, Java, HTML e outras. É compreensível que haja uma demanda insaciável por qualquer ferramenta que simplifique o desenvolvimento de aplicativos Java, economizando tempo e dinheiro aos desenvolvedores.
- 
-            </p>
-    
+            <h2>Lista de Livros</h2>
+            <div class="row" th:each="livro : ${livros}">
+                <div class="col-md-4 book-card">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagem do Livro"> <!-- Imagem padrão -->
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${livro.nome}">Título do Livro</h5>
+                            <p class="card-text" th:text="${livro.anoPublicacao}">Descrição do livro.</p>
+                            <a th:href="@{/livro/editar/{id}(id=${livro.id})}" class="btn btn-primary">Ver Detalhes</a> <!-- Link para editar o livro -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    
+
+        <!-- Adicionando scripts do Bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </section>
 </body>
 </html>

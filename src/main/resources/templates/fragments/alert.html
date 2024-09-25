@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>Livraria Biribinha</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .alert {
+            margin: 20px 0; /* Espaçamento superior e inferior */
+        }
+    </style>
 </head>
 <body>
     <div th:fragment="alert">
@@ -18,11 +24,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
         </div>
+
         <div th:if="${fail != null}">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="oi oi-check"></i>
+                <i class="oi oi-x"></i> <!-- Ícone alterado para um ícone de erro -->
                 <span>
                     <strong th:text="${fail}"></strong>
                 </span>
@@ -30,8 +36,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

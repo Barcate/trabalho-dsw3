@@ -3,13 +3,13 @@
       xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <title>Biribinha livros</title>
+    <title>Biribinha Livros</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="icon" href="/image/favicon.png" />
+    <link rel="icon" href="/image/favicon.jpg" />
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,6 +19,52 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #e9ecef; /* Fundo mais suave */
+            font-family: 'Arial', sans-serif; /* Fonte mais moderna */
+            color: #343a40; /* Cor do texto */
+        }
+
+        header {
+            background-color: #343a40; /* Cor de fundo do cabeçalho */
+            color: white; /* Cor do texto do cabeçalho */
+            padding: 10px; /* Espaçamento interno do cabeçalho */
+        }
+
+        aside {
+            background-color: #ffffff; /* Cor de fundo do menu lateral */
+            border-right: 2px solid #dee2e6; /* Borda à direita do menu lateral */
+            height: 100vh; /* Altura total da tela */
+        }
+
+        main {
+            padding: 20px; /* Espaçamento interno do conteúdo principal */
+        }
+
+        footer {
+            background-color: #343a40; /* Cor de fundo do rodapé */
+            color: white; /* Cor do texto do rodapé */
+            text-align: center; /* Alinhamento central do texto */
+            padding: 10px; /* Espaçamento interno do rodapé */
+            position: relative; /* Para o posicionamento */
+            bottom: 0; /* Para manter o rodapé na parte inferior */
+            width: 100%; /* Largura total do rodapé */
+        }
+
+        .nav-item a {
+            color: #343a40; /* Cor dos links no menu */
+            text-decoration: none; /* Remover sublinhado dos links */
+        }
+
+        .nav-item a:hover {
+            color: #007bff; /* Cor ao passar o mouse sobre os links */
+        }
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            color: #fff;
+            background-color: #dc6a6a !important;
+        }
+    </style>
 </head>
 <body>
     <header th:replace="~{fragments/header :: cabecalho}">
@@ -26,7 +72,7 @@
     </header>
 
     <div class="d-flex">
-        <aside class="bg-light" style="width: 250px;">
+        <aside style="width: 250px;">
             <nav th:replace="~{fragments/sidebar :: nav-sidebar}">
                 <div>Menu</div>
             </nav>
